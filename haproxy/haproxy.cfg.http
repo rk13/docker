@@ -1,8 +1,10 @@
 global
 	log 127.0.0.1	local0
 	maxconn 4096
-	#daemon
-	debug
+  chroot /var/lib/haproxy
+  user haproxy
+  group haproxy
+  daemon
 
 defaults
 	log	global
@@ -12,20 +14,21 @@ defaults
 	retries	3
 	option redispatch
 	timeout connect 5000
-	timeout client 10000
-	timeout server 10000
+  timeout check   2000
+	timeout client  50000
+	timeout server  50000
 
 listen app1 0.0.0.0:5000
   mode http
+  option httpchk
   stats enable
   stats uri /haproxy?stats
-  stats realm Strictly\ Private
-  stats auth A_Username:YourPassword
-  stats auth Another_User:passwd
+  stats realm Private
+  stats auth admin:admin123
   balance roundrobin
   option httpclose
   option forwardfor
-  server node1 node1:5000 check inter 2000 fall 1
-  server node2 node2:5000 check inter 2000 fall 1
+  server node1 127.0.0.1:5001 check inter 2000 rise 1 fall 1
+  server node2 127.0.0.1:5002 check inter 2000 rise 1 fall 1
 
 
