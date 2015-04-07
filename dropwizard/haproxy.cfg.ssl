@@ -22,6 +22,6 @@ defaults
 listen dropwizard-example 0.0.0.0:8443
   option tcp-check
 	balance	roundrobin
-	server inst1 127.0.0.1:18443 maxconn 32 check inter 2000 fall 1 rise 1
-	server inst2 127.0.0.1:28443 maxconn 32 check inter 2000 fall 1 rise 1
-
+	server inst1 127.0.0.1:18443 maxconn 32 check inter 2000 fall 1 rise 10
+	server inst2 127.0.0.1:28443 maxconn 32 check inter 2000 fall 1 rise 10
+  
