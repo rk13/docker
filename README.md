@@ -1,8 +1,8 @@
 Docker
 ======
 ### Simple commands
-* `sudo docker run -i -t ubuntu /bin/bash` - starts Ubuntu
-* `sudo docker run -d ubuntu /bin/sh -c "while true; do echo hello world; sleep 1; done"` - runs daemon
+* `docker run -i -t ubuntu /bin/bash` - starts Ubuntu
+* `docker run -d ubuntu /bin/sh -c "while true; do echo hello world; sleep 1; done"` - runs daemon
 * `docker run -d -P --name web training/webapp python app.py` - run container with specified name
 * `docker ps` - list RUNNING docker containers
 * `docker ps -a` - list ALL docker containers
